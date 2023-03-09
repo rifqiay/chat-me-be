@@ -70,7 +70,7 @@ const authControllers = {
         rows: [users],
       } = await findByEmail(email);
       if (!users) throw next(new createError(400, "Email is invalid"));
-      if (users.isverified === false)
+      if (users.is_verified === false)
         throw next(new createError(400, "account not verified by email"));
       const isPassword = bcrypt.compareSync(password, users.password);
       if (!isPassword) throw next(new createError(400, "Password is in valid"));
