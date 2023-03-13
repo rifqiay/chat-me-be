@@ -5,6 +5,7 @@ const {
   editUsername,
   editBio,
   editPhoto,
+  getFriends,
 } = require("../../model/user/user");
 const { response } = require("../../helper/common");
 const { deleteImage, uploadToCloudinary } = require("../../middleware/upload");
@@ -81,6 +82,15 @@ const userControllers = {
       response(res, respons.rows, 200, "Edit photo success", "success");
     } catch (error) {
       console.log(error);
+    }
+  },
+  allFriends: async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const result = await getFriends(id);
+      response(res, result.rows, 200, "get all friends success", "success");
+    } catch (error) {
+      next(error);
     }
   },
 };

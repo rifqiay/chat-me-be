@@ -27,6 +27,10 @@ const editPhoto = (data) => {
   return db.query(`UPDATE users SET photo='${photo}' WHERE id='${id}'`);
 };
 
+const getFriends = (id) => {
+  return db.query(`SELECT * FROM users WHERE id <> '${id}'`);
+};
+
 module.exports = {
   editName,
   getuser,
@@ -34,4 +38,5 @@ module.exports = {
   editUsername,
   editBio,
   editPhoto,
+  getFriends,
 };
